@@ -1,15 +1,54 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app">
+    <div id="wrapper">
+      <HeaderView/>
+      Ukraine 🇺🇦
+
+      <button @click="getBtn">api test btn</button>
+
+
+
+
+      
+
+      <router-view :postList="postList"></router-view>
+
+    </div>
+    <FooterView/>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import HeaderView from './components/HeaderView.vue'
+import FooterView from './components/FooterView.vue'
+import postData from './assets/tempData.js'
 
 export default {
   name: 'App',
+  data() {
+    return {
+      postList: postData,
+    }
+  },
   components: {
-    HelloWorld
+    'HeaderView' : HeaderView,
+    'FooterView' : FooterView,
+    //'PostView' : PostView,
+  },
+  methods: {
+    getBtn: function() {
+      let url  = '/test';
+      //console.log(url);
+      this.axios.get(url)
+        .then(function (response) {
+          let result = response.data;
+          console.log(result);
+          return alert(result)
+        })
+        .catch(function (error) { 
+          console.log('getBtn 실패', error); 
+        });
+    }
   }
 }
 </script>
@@ -21,6 +60,8 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+#wrapper{
+  padding-bottom: 100px;
 }
 </style>
