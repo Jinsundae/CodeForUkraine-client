@@ -2,14 +2,12 @@
   <div id="app">
     <div id="wrapper">
       <HeaderView/>
-      Ukraine 🇺🇦
-
-      <button @click="getBtn">api test btn</button>
-
-
-
-
       
+      
+      
+      <!-- api test
+      <button @click="getBtn">api test btn</button>
+      -->
 
       <router-view :postList="postList"></router-view>
 
@@ -46,7 +44,7 @@ export default {
           return alert(result)
         })
         .catch(function (error) { 
-          console.log('getBtn 실패', error); 
+          console.log('getBtn failed', error); 
         });
     }
   }
@@ -62,6 +60,12 @@ export default {
   color: #2c3e50;
 }
 #wrapper{
-  padding-bottom: 100px;
+  padding-bottom: 30px;
+}
+.main-notice {
+  font-size : 1.3rem;
+  color: gray;
+  margin: 15px;
+  
 }
 </style>
